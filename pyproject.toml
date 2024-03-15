@@ -16,19 +16,17 @@ description = "Easy-to-use LLM API from a state-of-the-art provider and comparis
 readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["llm", "llmapi", "llminference", "llmprovider", "llmprice", "llmlearderboard"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  
+]
 
 [project.urls]
-Homepage = "https://example.com"
-Documentation = "https://readthedocs.org"
-Repository = "https://github.com/me/spam.git"
-"Bug Tracker" = "https://github.com/me/spam/issues"
-Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
-
-[project.scripts]
-spam-cli = "spam:main_cli"
-
-[project.gui-scripts]
-spam-gui = "spam:main_gui"
-
-[project.entry-points."spam.magical"]
-tomatoes = "spam:main_tomatoes"
+Homepage = "https://github.com/hieuminh65/api4all"
+Documentation = "https://github.com/hieuminh65/api4all"
+Repository = "https://github.com/hieuminh65/api4all"
+Changelog = "https://github.com/hieuminh65/api4all/blob/main/CHANGELOG.md"
