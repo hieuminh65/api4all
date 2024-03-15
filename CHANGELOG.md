@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.7] - 2024-03-15
+
+### Added
+- add dependencies
+
+### Fixed
+- Fix readme
+
+
 ## [0.1.0] - 2024-03-15
 
 ### Added

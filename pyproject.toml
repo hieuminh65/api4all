@@ -3,8 +3,19 @@ requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
+dependencies = [
+    "openai == 1.13.3",
+    "anthropic == 0.19.1",
+    "fireworks-ai == 0.13.0",
+    "groq == 0.4.2",
+    "mistralai == 0.1.6",
+    "python-dotenv == 1.0.1",
+    "replicate == 0.24.0",
+    "together == 0.2.11",
+    requests==2.31.0
+]
 name = "api4all"
-version = "0.0.0"
+version = "0.2.7"
 requires-python = ">=3.8"
 authors = [
   {name = "Hieu Nguyen", email = "hieung.tech@gmail.com"}
@@ -12,17 +23,14 @@ authors = [
 maintainers = [
   {name = "Hieu Nguyen", email = "hieung.tech@gmail.com"}
 ]
-description = "Easy-to-use LLM API from a state-of-the-art provider and comparison."
+description = "Easy-to-use LLM API from a state-of-the-art provider and comparison"
 readme = "README.md"
 license = {file = "LICENSE"}
-keywords = ["llm", "llmapi", "llminference", "llmprovider", "llmprice", "llmlearderboard"]
+keywords = ["llm", "llmapi", "llminference", "llmprovider", "llmprice", "llmlearderboard", "llmpricing"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-]
-dependencies = [
-  
 ]
 
 [project.urls]

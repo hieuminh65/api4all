@@ -2,12 +2,12 @@
 Easy-to-use LLM API from a state-of-the-art provider and comparison.
 
 ## Installation
-1. Clone the repository
+1. Install the package
 ```bash
-git clone https://github.com/api4all/api4all.git
+pip3 install api4all
 ```
 
-2. Create and activate a virtual environment
+2. Create and activate a virtual environment (optional but recommended)
 - Unix / macOS
 ```bash
 python3 -m venv venv
@@ -24,6 +24,56 @@ python3 -m venv venv
 pip install -r requirements.txt
 ```
 
+## Quick Start
+1. Wrap the API key in a `.env` file of the provider you want to test.
+```bash
+TOGETHER_API_KEY=xxx
+OPENAI_API_KEY=xxx
+MISTRAL_API_KEY=xxx
+ANTHROPIC_API_KEY=xxx
+```
+
+2. Run the code
+```python
+from api4all import EngineFactory
+
+messages = [
+    {"role": "system",
+    "content": "You are a helpful assistent for the my Calculus class."},
+    {"role": "user",
+    "content": "What is the current status of the economy?"}
+]
+
+
+engine = EngineFactory.create_engine(provider="together", 
+                                    model="google/gemma-7b-it", 
+                                    messages=messages, 
+                                    temperature=0.5, 
+                                    max_tokens=256, 
+                                    )
+
+response = engine.generate_response()
+
+print(response)
+```
+
+3. Check the [log file](logfile.log) for the response and the cost of the request.
+```bash
+Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
+	create at: 2024-03-15 16:38:18,129
+	INFO - SUCCESS
+	
+    Response:
+		I am not able to provide information about the current status of the economy, as I do not have access to real-time information. Therefore, I recommend checking a reliable source for the latest economic news and data.
+	
+    Cost: $0.0000154    # Cost of this provider for this request
+	Provider: together  # Provider used for this request
+	Execution-time: Execution time not provided by the provider
+	Actual-time: 0.9448428153991699 # Actual time taken by the request
+	Input-token: 33     # Number of tokens used for the input
+	Output-token: 44    # Number of tokens used for the output
+```
+
 ## Providers and Pricing
 
 ### Providers
@@ -38,8 +88,8 @@ Provider | Free Credit | Rate Limit | API Key name | Provider string name |
 |  [Deepinfra](https://deepinfra.com)    |     Free to try     | 200 Concurrent request |  DEEPINFRA_API_KEY | "deepinfra"  |
 |  [Google AI (Vertex AI)](https://ai.google.dev)    |     Unlimited     | 60 Requests / Minute | GOOGLE_API_KEY | "google"  |
 |  [OpenAI](http://openai.com)    |     &#x2715;     | 60 Requests / Minute | OPENAI_API_KEY | "openai"  |
-|  [Mistral AI](https://mistral.ai)    |     &#x2715;     | 5 Requests / Second | MISTRAL_API_KEY | "mistral"  |
-|  [Anthropic](https://www.anthropic.com)    |     &#x2715;     | 5 Requests / Minute | ANTHROPIC_API_KEY | "anthropic"  |
+|  [Mistral AI](https://mistral.ai)    |     Free to try     | 5 Requests / Second | MISTRAL_API_KEY | "mistral"  |
+|  [Anthropic](https://www.anthropic.com)    |     Free to try     | 5 Requests / Minute | ANTHROPIC_API_KEY | "anthropic"  |
 
 
 - **Free to try**: Free to try, no credit card required but limited to a certain number of tokens.

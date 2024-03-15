@@ -7,6 +7,13 @@ messages = [
     "content": "What is the current status of the economy?"}
 ]
 
+messages = [
+    {"role": "system",
+    "content": "You are a helpful assistent for the my Calculus class."},
+    {"role": "user",
+    "content": "What is the current status of the economy?"}
+]
+
 
 # messages = [
 #     {"role": "system",
@@ -18,7 +25,7 @@ messages = [
 # <|response|>"""}
 # ]
 
-engine = EngineFactory.create_engine(provider="groq", model="google/gemma-7b-it", messages=messages, temperature=0.5, max_tokens=256, top_p=0.9, stop=None)
+engine = EngineFactory.create_engine(provider="together", model="google/gemma-7b-it", messages=messages, temperature=0.5, max_tokens=256, top_p=0.9, stop=None)
 # engine = EngineFactory.create_engine(provider="mistral", model="mistral/mistral-small-latest", messages=messages, temperature=0.5, max_tokens=256, top_p=0.9, stop=None)
 response = engine.generate_response()
 print(response)
