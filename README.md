@@ -19,11 +19,6 @@ python3 -m venv venv
 .\venv\Scripts\activate
 ```
 
-3. Install the requirements
-```bash
-pip install -r requirements.txt
-```
-
 ## Quick Start
 1. Wrap the API key in a `.env` file of the provider you want to test.
 ```bash

@@ -12,7 +12,6 @@ dependencies = [
     "python-dotenv == 1.0.1",
     "replicate == 0.24.0",
     "together == 0.2.11",
-    requests==2.31.0
 ]
 name = "api4all"
 version = "0.2.7"

@@ -25,12 +25,12 @@ class Keys:
                 DEEPINFRA_API_KEY: Optional[str] = None,
 
                 ) -> None:
-        pass
+        self._find_dotenv()
 
     def _find_dotenv(self) -> str:
         dotenv_path = find_dotenv()
         if not dotenv_path:
-            print("No .env file found. Create a .env file and add the required API keys.")
+            print("No .env file found.")
             load_dotenv(dotenv_path)     
         return dotenv_path
             
