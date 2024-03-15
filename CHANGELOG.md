@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.8] - 2024-03-15
+
+### Fixed
+- Fix find dot env file in the Keys class.
+
+
 ## [0.2.7] - 2024-03-15
 
 ### Added

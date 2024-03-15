@@ -29,9 +29,10 @@ class Keys:
 
     def _find_dotenv(self) -> str:
         dotenv_path = find_dotenv()
-        if not dotenv_path:
+        if dotenv_path:
+            load_dotenv(dotenv_path)
+        else:
             print("No .env file found.")
-            load_dotenv(dotenv_path)     
         return dotenv_path
             
     def get_api_keys(self, api_key_name: str) -> str:
