@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api4all"
+version = "0.0.0"
+requires-python = ">=3.8"
+authors = [
+  {name = "Hieu Nguyen", email = "hieung.tech@gmail.com"}
+]
+maintainers = [
+  {name = "Hieu Nguyen", email = "hieung.tech@gmail.com"}
+]
+description = "Easy-to-use LLM API from a state-of-the-art provider and comparison."
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["llm", "llmapi", "llminference", "llmprovider", "llmprice", "llmlearderboard"]
+
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://readthedocs.org"
+Repository = "https://github.com/me/spam.git"
+"Bug Tracker" = "https://github.com/me/spam/issues"
+Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[project.scripts]
+spam-cli = "spam:main_cli"
+
+[project.gui-scripts]
+spam-gui = "spam:main_gui"
+
+[project.entry-points."spam.magical"]
+tomatoes = "spam:main_tomatoes"

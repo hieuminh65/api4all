@@ -1,5 +1,5 @@
 # api4all
-Easy-to-use LLM API from a state-of-the-art provider
+Easy-to-use LLM API from a state-of-the-art provider and comparison.
 
 ## Installation
 1. Clone the repository
