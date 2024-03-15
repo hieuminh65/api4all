@@ -208,7 +208,7 @@ data = {
         },
         "context-length": 32768
     },
-    "anthropic/claude-3-opus-20240229": {
+    "anthropic/claude-3-opus": {
         "provider": {
             "anthropic": {
                 "name": "claude-3-opus-20240229",
@@ -220,7 +220,7 @@ data = {
         },
         "context-length": 200000
     },
-    "anthropic/claude-3-sonnet-20240229": {
+    "anthropic/claude-3-sonnet": {
         "provider": {
             "anthropic": {
                 "name": "claude-3-sonnet-20240229",
@@ -232,7 +232,7 @@ data = {
         },
         "context-length": 200000
     },
-    "anthropic/claude-3-haiku-20240307": {
+    "anthropic/claude-3-haiku": {
         "provider": {
             "anthropic": {
                 "name": "claude-3-haiku-20240307",

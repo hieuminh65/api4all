@@ -1,6 +1,12 @@
 # api4all
 Easy-to-use LLM API from a state-of-the-art provider and comparison.
 
+## Features
+- **Easy-to-use**: A simple and easy-to-use API for state-of-the-art language models from different providers but in a same way.
+- **Comparison**: Compare the cost and performance of different providers and models.
+- **Log**: Log the response and cost of the request in a log file.
+- **Providers**: Support for all of providers both open-source and closed-source.
+
 ## Installation
 1. Install the package
 ```bash
@@ -69,11 +75,11 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 	Output-token: 44    # Number of tokens used for the output
 ```
 
-## Providers and Pricing
+## Providers and Models
 
 ### Providers
 
-Provider | Free Credit | Rate Limit | API Key name | Provider string name |
+| Provider | Free Credit | Rate Limit | API Key name | Provider string name |
 |:------:|:------:|:------:|:------:|:------:|
 |  [Groq](https://wow.groq.com)          |     Unlimited | 30 Requests / Minute  | GROQ_API_KEY | "groq"  |
 |  [Anyscale](https://www.anyscale.com)  |     $10      | 30 Requests / Second  |  ANYSCALE_API_KEY | "anyscale"  |
@@ -90,77 +96,51 @@ Provider | Free Credit | Rate Limit | API Key name | Provider string name |
 - **Free to try**: Free to try, no credit card required but limited to a certain number of tokens.
 
 ### Open-source models
-<details>
-<summary><b>1. Mixtral-8x7b-Instruct-v0.1</b></summary>
+  -- |Mixtral-8x7b-Instruct-v0.1 | Gemma 7B it |  Mistral-7B-Instruct-v0.1 | LLaMA2-70b |
+|:------:|:------:|:------:|:------:|:------:|
+|  API string name          |     "mistralai/Mixtral-8x7B-Instruct-v0.1"    | "google/gemma-7b-it"    | &#x2715;  | "meta/Llama-2-70b-chat-hf" |
+|  Context Length          |     32,768    | 8.192    |  4,096 | 4,096
+|  Developer          |     Mistral AI    | Google    |  Mistral AI | Meta
+|  Cost (Input - Output / MTokens)          |     -----    | ------    | ------ | -----
+|  [Groq](https://wow.groq.com)          |     $0-$0    | $0-$0    | &#x2715; | $0-$0
+|  [Anyscale](https://www.anyscale.com)  |     $0.5-$0.5       | $0.15-$0.15       |  $0.15-$0.15 | $1.0-$1.0
+|  [Together AI](https://www.together.ai)|     $0.6-$0.6        | $0.2-$0.2        | $0.2-$0.2 | $0.9-$0.9
+|  [Replicate](https://replicate.com)    |     $0.3-$1       | &#x2715;       |  $0.05-$0.25 | $0.65-$2.75
+|  [Fireworks](https://fireworks.ai)     |     $0.5-$0.5        | $0.2-$0.2        |  $0.2-$0.2  | $0.9-$0.9
+|  [Deepinfra](https://deepinfra.com)    |     $0.27-$0.27    | &#x2715;    |   &#x2715; | $0.7-$0.9
 
-Mixtral 8x7B is a high-performing sparse mixture of experts model (SMoE) with open weights, licensed under Apache 2.0. It surpasses Llama 2 70B in most benchmarks, offering 6x faster inference. It's the best open-weight model considering cost/performance trade-offs, matching or exceeding GPT3.5 on most standard benchmarks.
-<br>
-- Developer: Mistral AI
-- Context Length: 32,768
+### Closed-source models
+#### 1. Mistral AI
 
-Provider | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) |
-|:------:|:------:|:------:|
-|  [Groq](https://wow.groq.com)          |     $0        | $0    | 
-|  [Anyscale](https://www.anyscale.com)  |     $0.5      | $0.5  | 
-|  [Together AI](https://www.together.ai)|     $0.6      | $0.6  | 
-|  [Replicate](https://replicate.com)    |     $0.3      | $1    |  
-|  [Fireworks](https://fireworks.ai)     |     $0.5      | $0.5  |  
-|  [Deepinfra](https://deepinfra.com)    |     $0.27     | $0.27 |   
-
-</details>
-
-<details>
-<summary><b>2. Gemma 7B it</b></summary>
-
-- Developer: Google AI
-- Context Length: 8,192
-
-
-Provider | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) |
-|:------:|:------:|:------:|
-|  [Groq](https://wow.groq.com)          |     $0        | $0    | 
-|  [Anyscale](https://www.anyscale.com)  |     $0.15      | $0.15  | 
-|  [Together AI](https://www.together.ai)|     $0.2      | $0.2  | 
-|  [Replicate](https://replicate.com)    |     &#x2715;      | &#x2715;    |  
-|  [Fireworks](https://fireworks.ai)     |     $0.2      | $0.2  |  
-|  [Deepinfra](https://deepinfra.com)    |     &#x2715;     | &#x2715; |   
-
-</details>
+| Model | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) | Context Length | API string name |
+|:------:|:------:|:------:|:------:|:------:|
+|  Mistral-7B-Instruct-v0.1          |     $0.25        | $0.25    |  8,192 | "mistral/open-mistral-7b" |
+|  Mixtral-8x7b-Instruct-v0.1          |     $0.7        | $0.7    |  8,192 | "mistral/open-mixtral-8x7b" |
+|  Mixtral Small          |     $2        | $6    |  &#x2715; | "mistral/mistral-small-latest" |
+|  Mixtral Medium          |     $2.7        | $8.1    |  &#x2715; | "mistral/mistral-medium-latest" |
+|  Mixtral Large          |     $8        | $24    |  &#x2715; | "mistral/mistral-large-latest" |
 
 
-<details>
-<summary><b>3. LLaMA2-70b</b></summary>
+#### 2. OpenAI
 
-- Developer: Meta AI
-- Context Length: 4,096
-
-
-Provider | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) |
-|:------:|:------:|:------:|
-|  [Groq](https://wow.groq.com)          |     $0        | $0         | 
-|  [Anyscale](https://www.anyscale.com)  |     $1.0      | $1.0       | 
-|  [Together AI](https://www.together.ai)|     $0.9      | $0.9       | 
-|  [Replicate](https://replicate.com)    |     $0.65     | $2.75      |  
-|  [Fireworks](https://fireworks.ai)     |     $0.9      | $0.9       |  
-|  [Deepinfra](https://deepinfra.com)    |     $0.7      | $0.9       |   
-
-</details>
+| Model | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) | Context Length | API string name |
+|:------:|:------:|:------:|:------:|:------:|
+|  GPT-3.5-0125          |     $0.5        | $1.5    |  16,385 | "openai/gpt-3.5-turbo-0125" |
+|  GPT-3.5          |     $0.5        | $1.5    |  16,385 | "openai/gpt-3.5-turbo" |
+|  GPT-4          |     $30        | $60    |  8,192 | "openai/gpt-4" |
+|  GPT-4          |     $60        | $120    |  32,768 | "openai/gpt-4-32k" |
 
 
-<details>
-<summary><b>4. Mistral-7B-Instruct-v0.1</b></summary>
+#### 3. Anthropic
+| Model | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) | Context Length | API string name |
+|:------:|:------:|:------:|:------:|:------:|
+|  Claude 3 Opus  |     $15        | $75    |  200,000 | "anthropic/claude-3-opus" |
+|  Claude 3 Sonnet  |     $3        | $15    |  200,000 | "anthropic/claude-3-sonnet" |
+|  Claude 3 Haiku  |     $0.25        | $1.25    |  200,000 | "anthropic/claude-3-haiku" |
+|  Claude 2.1  |     $8        | $24    |  200,000 | "anthropic/claude-2.1" |
+|  Claude 2.0  |     $8        | $24    |  100,000 | "anthropic/claude-2.0" |
+|  Claude 2.0  |     $0.8        | $2.4    |  100,000 | "anthropic/claude-instant-1.2" |
 
-- Developer: Mistral AI
-- Context Length: 4,096
 
-
-Provider | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) |
-|:------:|:------:|:------:|
-|  [Groq](https://wow.groq.com)          |     &#x2715;    | &#x2715;    | 
-|  [Anyscale](https://www.anyscale.com)  |     $0.15       | $0.15       | 
-|  [Together AI](https://www.together.ai)|     $0.2        | $0.2        | 
-|  [Replicate](https://replicate.com)    |     $0.05       | $0.25       |  
-|  [Fireworks](https://fireworks.ai)     |     $0.2        | $0.2        |  
-|  [Deepinfra](https://deepinfra.com)    |     &#x2715;    | &#x2715;    |   
-
-</details>
+## Contributing
+Welcome to contribute to the project. If you see any updated pricing, new models, new providers, or any other changes, feel free to open an issue or a pull request.

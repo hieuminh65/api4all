@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-03-15
+
+### Added
+- Refined the README file.
+- Officially released the package.
+
+
 ## [0.2.8] - 2024-03-15
 
 ### Fixed

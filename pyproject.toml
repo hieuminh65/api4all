@@ -14,7 +14,7 @@ dependencies = [
     "together == 0.2.11",
 ]
 name = "api4all"
-version = "0.2.8"
+version = "0.2.9"
 requires-python = ">=3.8"
 authors = [
   {name = "Hieu Nguyen", email = "hieung.tech@gmail.com"}
