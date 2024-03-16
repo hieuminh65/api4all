@@ -6,6 +6,7 @@ Easy-to-use LLM API from a state-of-the-art provider and comparison.
 - **Comparison**: Compare the cost and performance of different providers and models.
 - **Log**: Log the response and cost of the request in a log file.
 - **Providers**: Support for all of providers both open-source and closed-source.
+- **Result**: See the actual time taken by the request, especially when you dont't trust the benchmark.
 
 ## Installation
 1. Install the package
@@ -32,6 +33,12 @@ TOGETHER_API_KEY=xxx
 OPENAI_API_KEY=xxx
 MISTRAL_API_KEY=xxx
 ANTHROPIC_API_KEY=xxx
+```
+
+or set the environment variable directly.
+```bash
+export TOGETHER_API_KEY=xxx
+export OPENAI_API_KEY=xxx
 ```
 
 2. Run the code
@@ -68,11 +75,11 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 		I am not able to provide information about the current status of the economy, as I do not have access to real-time information. Therefore, I recommend checking a reliable source for the latest economic news and data.
 	
     Cost: $0.0000154    # Cost of this provider for this request
-	Provider: together  # Provider used for this request
-	Execution-time: Execution time not provided by the provider
-	Actual-time: 0.9448428153991699 # Actual time taken by the request
-	Input-token: 33     # Number of tokens used for the input
-	Output-token: 44    # Number of tokens used for the output
+    Provider: together  # Provider used for this request
+    Execution-time: Execution time not provided by the provider
+    Actual-time: 0.9448428153991699 # Actual time taken by the request
+    Input-token: 33     # Number of tokens used for the input
+    Output-token: 44    # Number of tokens used for the output
 ```
 
 ## Providers and Models
@@ -140,6 +147,12 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 |  Claude 2.1  |     $8        | $24    |  200,000 | "anthropic/claude-2.1" |
 |  Claude 2.0  |     $8        | $24    |  100,000 | "anthropic/claude-2.0" |
 |  Claude 2.0  |     $0.8        | $2.4    |  100,000 | "anthropic/claude-instant-1.2" |
+
+
+#### 4. Google
+| Model | Input Pricing ($/1M Tokens) | Output Pricing ($/1M Tokens) | Context Length | API string name |
+|:------:|:------:|:------:|:------:|:------:|
+|  Google Gemini 1.0 Pro  |     $0        | $0    |  32,768 | "google/gemini-1.0-pro" |
 
 
 ## Contributing

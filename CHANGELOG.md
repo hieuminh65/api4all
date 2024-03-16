@@ -6,7 +6,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Refined the README file.
 - Officially released the package.
+- Google AI models
 
+### Fixed
+- fix the llama70B model api name string of groq.
 
 ## [0.2.8] - 2024-03-15
 

@@ -290,7 +290,7 @@ data = {
                 }
             },
             "groq": {
-                "name": "LLaMA2-70b-chat",
+                "name": "llama2-70b-4096",
                 "price": {
                     "input": 0,
                     "output": 0
@@ -326,5 +326,17 @@ data = {
             }
         },
         "context-length": 4096
-    }
+    },
+    "google/gemini-1.0-pro": {
+        "provider": {
+            "google": {
+                "name": "gemini-1.0-pro",
+                "price": {
+                    "input": 0,
+                    "output": 0
+                }
+            }
+        },
+        "context-length": 32768
+    },
 }

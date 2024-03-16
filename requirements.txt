@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 replicate==0.24.0
 requests==2.31.0
 together==0.2.11
+google-generativeai==0.4.1

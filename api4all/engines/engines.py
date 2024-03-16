@@ -14,7 +14,7 @@ import openai
 import replicate
 import anthropic
 from mistralai.client import MistralClient
-
+import google.generativeai as genai
 
 __all__ = ["GroqEngine", "AnyscaleEngine", "TogetherEngine", "FireworksEngine", "ReplicateEngine", "DeepinfraEngine", "OpenaiEngine", "AnthropicEngine", "MistralEngine"]
 
@@ -387,7 +387,7 @@ class ReplicateEngine(TextEngine):
                     "temperature": self.temperature,
                     "max_new_tokens": self.max_tokens,
                     "top_p": self.top_p,
-                    "stop_sequences": self.stop
+                    "stop_sequences": self.stop if self.stop else ""
                 }
             )
         except Exception as e:
@@ -638,9 +638,9 @@ class AnthropicEngine(TextEngine):
 
         actual_time = time.time() - start_time
 
-        content = completion.choices[0].message.content
-        input_tokens = completion.usage.prompt_tokens
-        output_tokens = completion.usage.completion_tokens
+        content = completion.content[0].text
+        input_tokens = completion.usage.input_tokens
+        output_tokens = completion.usage.output_tokens
         execution_time = None
         cost = dataEngine.calculate_cost(self.provider, self.model, input_tokens, output_tokens)
 
@@ -717,6 +717,118 @@ class MistralEngine(TextEngine):
         output_tokens = completion.usage.completion_tokens
         execution_time = None
         cost = dataEngine.calculate_cost(self.provider, self.model, input_tokens, output_tokens)
+
+        response = TextResponse(
+            content=content,
+            cost=cost,
+            execution_time=execution_time,
+            actual_time=actual_time,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            provider=self.provider
+        )
+
+        log_response(self.logger, "SUCCESS", response)
+
+        return response
+
+
+#-----------------------------------------Gooole Gemini AI-----------------------------------------#
+@EngineFactory.register_engine('google')
+class GoogleEngine(TextEngine):
+    def __init__(self,
+                model: str,
+                provider: str = "google",
+                temperature: Optional[float] = ModelConfig.DEFAULT_TEMPERATURE,
+                max_tokens: Optional[int] = ModelConfig.DEFAULT_MAX_TOKENS,
+                top_p: Optional[float] = ModelConfig.DEFAULT_TOP_P,
+                stop: Union[str, List[str], None] = ModelConfig.DEFAULT_STOP,
+                messages: Optional[List[Dict[str, str]]] = ModelConfig.MESSAGES_EXAMPLE
+                ) -> None:
+        super().__init__(model, provider, temperature, max_tokens, top_p, stop, messages)
+
+        self._api_key = self._keys.get_api_keys("GOOGLE_API_KEY")
+        if self._api_key is None:
+            self.logger.error(f"API key not found for {self.provider}")
+            raise ValueError(f"API key not found for {self.provider}")
+        
+        # Set up the client
+        self._set_up_client()
+
+        self._api_name = dataEngine.getAPIname(self.model, self.provider)
+
+        self.generation_config = {
+            "temperature": self.temperature,
+            "top_p": self.top_p,
+            "max_output_tokens": self.max_tokens,
+        }
+
+        self.safety_settings = [
+        {
+            "category": "HARM_CATEGORY_HARASSMENT",
+            "threshold": "BLOCK_ONLY_HIGH"
+        },
+        {
+            "category": "HARM_CATEGORY_HATE_SPEECH",
+            "threshold": "BLOCK_ONLY_HIGH"
+        },
+        {
+            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "threshold": "BLOCK_ONLY_HIGH"
+        },
+        {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "BLOCK_ONLY_HIGH"
+        }
+        ]
+
+
+    def _set_up_client(self):
+        genai.configure(api_key=self._api_key)
+
+
+    def construct_prompt_parts(self):
+        prompt_parts = []
+        for message in self.messages:
+            if message["role"] == "system":
+                prompt_parts.append(f"{message['content']}")
+            elif message["role"] == "user":
+                prompt_parts.append(f"Input: {message['content']}")
+            else:
+                prompt_parts.append(f"Output: {message['content']}")
+
+        return prompt_parts
+
+
+    def generate_response(self,
+                        **kwargs: Any
+                        ) -> Union[str, None]:
+        """
+        This method is used to generate a response from the AI model.
+
+        """
+        start_time = time.time()
+
+        model = genai.GenerativeModel(model_name = self._api_name,
+                                    generation_config = self.generation_config,
+                                    safety_settings = self.safety_settings)
+        
+        prompt_parts = self.construct_prompt_parts()
+
+        try:
+            completion = model.generate_content(prompt_parts)
+        except Exception as e:
+            print(f"Error generating response: {e}")
+            self.logger.error(f"Error generating response of provider {self.provider}: {e}")
+            return None
+
+        actual_time = time.time() - start_time
+
+        content = completion.text
+        input_tokens = None
+        output_tokens = None
+        execution_time = None
+        cost = 0
 
         response = TextResponse(
             content=content,
