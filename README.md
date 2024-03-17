@@ -67,7 +67,7 @@ response = engine.generate_response()
 print(response)
 ```
 
-- There are some examples in the [examples](examples) folder or <a href="https://colab.research.google.com/drive/1nMGqoWIkL2xLlaSE54vOHhpffaHpihY3?usp=sharing"><img src="img/colab.svg" alt="Open In Colab"></a> to test the examples in Google Colab.
+- There are some examples in the [examples](api4all/examples) folder or <a href="https://colab.research.google.com/drive/1nMGqoWIkL2xLlaSE54vOHhpffaHpihY3?usp=sharing"><img src="api4all/img/colab.svg" alt="Open In Colab"></a> to test the examples in Google Colab.
 
 #### 3. Check the [log file](logfile.log) for the response and the cost of the request.
 ```log
