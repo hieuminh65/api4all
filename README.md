@@ -15,7 +15,7 @@ Easy-to-use LLM API from a state-of-the-art provider and comparison.
 pip3 install api4all
 ```
 
-#### 2. Create and activate a virtual environment (optional but recommended)
+#### 2. **Optional** - Create and activate a virtual environment
 - Unix / macOS
 ```bash
 python3 -m venv venv
@@ -110,19 +110,19 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 - Rate limit is based on the free plan of the provider. The actual rate limit may be different based on the plan you choose.
 
 ### Open-source models
-  -- |Mixtral-8x7b-Instruct-v0.1 | Gemma 7B it |  Mistral-7B-Instruct-v0.1 | LLaMA2-70b |
-|:------:|:------:|:------:|:------:|:------:|
-|  API string name          |     "mistralai/Mixtral-8x7B-Instruct-v0.1"    | "google/gemma-7b-it"    | &#x2715;  | "meta/Llama-2-70b-chat-hf" |
-|  Context Length          |     32,768    | 8.192    |  4,096 | 4,096
+  -- |Mixtral-8x7b-Instruct-v0.1 | Gemma 7B it |  Mistral-7B-Instruct-v0.1 | LLaMA2-70b | Mistral-7B-Instruct-v0.2 | CodeLlama-70b-Instruct
+|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|  API string name          |     "mistralai/Mixtral-8x7B-Instruct-v0.1"    | "google/gemma-7b-it"    | "mistralai/Mistral-7B-Instruct-v0.1"  | "meta/Llama-2-70b-chat" | "mistralai/Mistral-7B-Instruct-v0.2" | "meta/CodeLlama-2-70b-intruct" |
+|  Context Length          |     32,768    | 8.192    |  4,096 | 4,096 | 32,768
 |  Developer          |     Mistral AI    | Google    |  Mistral AI | Meta
-|  Cost (Input - Output / MTokens)          |     -----    | ------    | ------ | -----
-|  [Groq](https://wow.groq.com)          |     $0-$0    | $0-$0    | &#x2715; | $0-$0
-|  [Anyscale](https://www.anyscale.com)  |     $0.5-$0.5       | $0.15-$0.15       |  $0.15-$0.15 | $1.0-$1.0
-|  [Together AI](https://www.together.ai)|     $0.6-$0.6        | $0.2-$0.2        | $0.2-$0.2 | $0.9-$0.9
-|  [Replicate](https://replicate.com)    |     $0.3-$1       | &#x2715;       |  $0.05-$0.25 | $0.65-$2.75
-|  [Fireworks](https://fireworks.ai)     |     $0.5-$0.5        | $0.2-$0.2        |  $0.2-$0.2  | $0.9-$0.9
-|  [Deepinfra](https://deepinfra.com)    |     $0.27-$0.27    | &#x2715;    |   &#x2715; | $0.7-$0.9
-|  [Lepton](https://www.lepton.ai)    |     $0.5-$0.5    | &#x2715;    |   &#x2715; | $0.8-$0.8
+|  **Cost (Input - Output / MTokens)**          |     -----    | ------    | ------ | -----
+|  [Groq](https://wow.groq.com)          |     $0-$0    | $0-$0    | &#x2715; | $0-$0 | &#x2715; | &#x2715;
+|  [Anyscale](https://www.anyscale.com)  |     $0.5-$0.5       | $0.15-$0.15       |  $0.05-$0.25 | $1.0-$1.0 | &#x2715; | $1.0-$1.0
+|  [Together AI](https://www.together.ai)|     $0.6-$0.6        | $0.2-$0.2        | $0.2-$0.2 | $0.9-$0.9 | $0.05-$0.25 | $0.9-$0.9
+|  [Replicate](https://replicate.com)    |     $0.3-$1       | &#x2715;       |  $0.05-$0.25 | $0.65-$2.75 | $0.2-$0.2 | $0.65-$2.75
+|  [Fireworks](https://fireworks.ai)     |     $0.5-$0.5        | &#x2715;        |  $0.2-$0.2  | $0.9-$0.9 | $0.2-$0.2 | $0.9-$0.9
+|  [Deepinfra](https://deepinfra.com)    |     $0.27-$0.27    | $0.13-$0.13    |   $0.13-$0.13 | $0.7-$0.9 | &#x2715; | $0.7-$0.9
+|  [Lepton](https://www.lepton.ai)    |     $0.5-$0.5    | &#x2715;    |   &#x2715; | $0.8-$0.8 | &#x2715; | &#x2715; 
 
 ### Closed-source models
 #### 1. Mistral AI

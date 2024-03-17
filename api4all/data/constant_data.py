@@ -287,7 +287,7 @@ data = {
         },
         "context-length": 100000
     },
-    "meta/Llama-2-70b-chat-hf": {
+    "meta/Llama-2-70b-chat": {
         "provider": {
             "anyscale": {
                 "name": "meta-llama/Llama-2-70b-chat-hf",
@@ -341,6 +341,46 @@ data = {
         },
         "context-length": 4096
     },
+    "meta/CodeLlama-2-70b-intruct": {
+        "provider": {
+            "anyscale": {
+                "name": "codellama/CodeLlama-70b-Instruct-hf",
+                "price": {
+                    "input": 1,
+                    "output": 1
+                }
+            },
+            "together": {
+                "name": "meta-llama/Llama-2-70b-chat-hf",
+                "price": {
+                    "input": 0.9,
+                    "output": 0.9
+                }
+            },
+            "replicate": {
+                "name": "meta/codellama-70b-instruct:a279116fe47a0f65701a8817188601e2fe8f4b9e04a518789655ea7b995851bf",
+                "price": {
+                    "input": 0.65,
+                    "output": 2.75
+                }
+            },
+            "fireworks": {
+                "name": "llama-v2-70b-code-instruct",
+                "price": {
+                    "input": 0.9,
+                    "output": 0.9
+                }
+            },
+            "deepinfra": {
+                "name": "codellama/CodeLlama-70b-Instruct-hf",
+                "price": {
+                    "input": 0.7,
+                    "output": 0.9
+                }
+            }
+        },
+        "context-length": 4096
+    },
     "google/gemini-1.0-pro": {
         "provider": {
             "google": {
@@ -348,6 +388,65 @@ data = {
                 "price": {
                     "input": 0,
                     "output": 0
+                }
+            }
+        },
+        "context-length": 32768
+    },
+    "mistralai/Mistral-7B-Instruct-v0.1": {
+        "provider": {
+            "anyscale": {
+                "name": "mistralai/Mistral-7B-Instruct-v0.1",
+                "price": {
+                    "input": 0.15,
+                    "output": 0.15
+                }
+            },
+            "replicate": {
+                "name": "mistralai/mistral-7b-instruct-v0.1:5fe0a3d7ac2852264a25279d1dfb798acbc4d49711d126646594e212cb821749",
+                "price": {
+                    "input": 0.05,
+                    "output": 0.25
+                }
+            },
+            "together": {
+                "name": "mistralai/Mistral-7B-Instruct-v0.1",
+                "price": {
+                    "input": 0.2,
+                    "output": 0.2
+                }
+            },
+            "deepinfra": {
+                "name": "mistralai/Mistral-7B-Instruct-v0.1",
+                "price": {
+                    "input": 0.13,
+                    "output": 0.13
+                }
+            }
+        },
+        "context-length": 8192
+    },
+    "mistralai/Mistral-7B-Instruct-v0.2": {
+        "provider": {
+            "replicate": {
+                "name": "mistralai/mistral-7b-instruct-v0.2",
+                "price": {
+                    "input": 0.05,
+                    "output": 0.25
+                }
+            },
+            "together": {
+                "name": "mistralai/Mistral-7B-Instruct-v0.2",
+                "price": {
+                    "input": 0.2,
+                    "output": 0.2
+                }
+            },
+            "fireworks": {
+                "name": "mistral-7b-instruct-v0p2",
+                "price": {
+                    "input": 0.2,
+                    "output": 0.2
                 }
             }
         },

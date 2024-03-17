@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2024-03-16
+
+### Added
+- Refined the README file.
+- Add Lepton provider
+- Add code llama70B, mistral-7b-instruct-v0.1, mistral-7b-instruct-v0.2
+
 ## [0.3.0] - 2024-03-15
 
 ### Added
