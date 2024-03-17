@@ -91,6 +91,13 @@ data = {
                     "output": 0.27
                 }
             },
+            "lepton": {
+                "name": "mixtral-8x7b",
+                "price": {
+                    "input": 0.5,
+                    "output": 0.5
+                }
+            },
             "mistral": {
                 "name": "open-mistral-7b",
                 "price": {
@@ -322,6 +329,13 @@ data = {
                 "price": {
                     "input": 0.7,
                     "output": 0.9
+                }
+            },
+            "lepton": {
+                "name": "llama2-70b",
+                "price": {
+                    "input": 0.8,
+                    "output": 0.8
                 }
             }
         },

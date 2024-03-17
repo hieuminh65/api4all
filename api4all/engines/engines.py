@@ -16,7 +16,7 @@ import anthropic
 from mistralai.client import MistralClient
 import google.generativeai as genai
 
-__all__ = ["GroqEngine", "AnyscaleEngine", "TogetherEngine", "FireworksEngine", "ReplicateEngine", "DeepinfraEngine", "OpenaiEngine", "AnthropicEngine", "MistralEngine"]
+__all__ = ["GroqEngine", "AnyscaleEngine", "TogetherEngine", "FireworksEngine", "ReplicateEngine", "DeepinfraEngine", "OpenaiEngine", "AnthropicEngine", "MistralEngine", "GoogleEngine"]
 
 
 #-----------------------------------------GROQ-----------------------------------------#
@@ -444,6 +444,83 @@ class DeepinfraEngine(TextEngine):
 
     def _set_up_client(self):
         self.client = openai.OpenAI(base_url="https://api.deepinfra.com/v1/openai",
+                                    api_key = self._api_key)
+
+
+    def generate_response(self,
+                        **kwargs: Any
+                        ) -> Union[str, None]:
+        """
+        This method is used to generate a response from the AI model.
+
+        """
+
+        start_time = time.time()
+
+        try:
+            completion = self.client.chat.completions.create(
+                messages=self.messages,
+                model=self._api_name,
+                temperature=self.temperature,
+                max_tokens=self.max_tokens,
+                top_p=self.top_p,
+                stop=self.stop
+            )
+        except Exception as e:
+            print(f"Error generating response: {e}")
+            self.logger.error(f"Error generating response of provider {self.provider}: {e}")
+            return None
+
+        actual_time = time.time() - start_time
+
+        content = completion.choices[0].message.content
+        input_tokens = completion.usage.prompt_tokens
+        output_tokens = completion.usage.completion_tokens
+        execution_time = None
+        cost = dataEngine.calculate_cost(self.provider, self.model, input_tokens, output_tokens)
+
+        response = TextResponse(
+            content=content,
+            cost=cost,
+            execution_time=execution_time,
+            actual_time=actual_time,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            provider=self.provider
+        )
+
+        log_response(self.logger, "SUCCESS", response)
+
+        return response
+
+
+#-----------------------------------------Lepton-----------------------------------------#
+@EngineFactory.register_engine('lepton')
+class LeptonEngine(TextEngine):
+    def __init__(self,
+                model: str,
+                provider: str = "lepton",
+                temperature: Optional[float] = ModelConfig.DEFAULT_TEMPERATURE,
+                max_tokens: Optional[int] = ModelConfig.DEFAULT_MAX_TOKENS,
+                top_p: Optional[float] = ModelConfig.DEFAULT_TOP_P,
+                stop: Union[str, List[str], None] = ModelConfig.DEFAULT_STOP,
+                messages: Optional[List[Dict[str, str]]] = ModelConfig.MESSAGES_EXAMPLE
+                ) -> None:
+        super().__init__(model, provider, temperature, max_tokens, top_p, stop, messages)
+
+        self._api_key = self._keys.get_api_keys("LEPTON_API_KEY")
+        if self._api_key is None:
+            self.logger.error(f"API key not found for {self.provider}")
+            raise ValueError(f"API key not found for {self.provider}")
+        
+        self._api_name = dataEngine.getAPIname(self.model, self.provider)
+
+        # Set up the client
+        self._set_up_client()
+
+
+    def _set_up_client(self):
+        self.client = openai.OpenAI(base_url=f"https://{self._api_name}.lepton.run/api/v1/",
                                     api_key = self._api_key)
 
 

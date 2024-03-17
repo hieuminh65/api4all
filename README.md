@@ -2,19 +2,20 @@
 Easy-to-use LLM API from a state-of-the-art provider and comparison.
 
 ## Features
-- **Easy-to-use**: A simple and easy-to-use API for state-of-the-art language models from different providers but in a same way.
-- **Comparison**: Compare the cost and performance of different providers and models.
+- **Easy-to-use**: A simple and easy-to-use API for state-of-the-art language models from different providers but using in a same way.
+- **Comparison**: Compare the cost and performance of different providers and models. Let you choose the best provider and model for your use case.
 - **Log**: Log the response and cost of the request in a log file.
 - **Providers**: Support for all of providers both open-source and closed-source.
 - **Result**: See the actual time taken by the request, especially when you dont't trust the benchmark.
 
 ## Installation
-1. Install the package
+
+#### 1. Install the package
 ```bash
 pip3 install api4all
 ```
 
-2. Create and activate a virtual environment (optional but recommended)
+#### 2. Create and activate a virtual environment (optional but recommended)
 - Unix / macOS
 ```bash
 python3 -m venv venv
@@ -27,7 +28,8 @@ python3 -m venv venv
 ```
 
 ## Quick Start
-1. Wrap the API key in a `.env` file of the provider you want to test.
+
+#### 1. Wrap the API keys in a `.env` file of the provider you want to test.
 ```bash
 TOGETHER_API_KEY=xxx
 OPENAI_API_KEY=xxx
@@ -41,7 +43,7 @@ export TOGETHER_API_KEY=xxx
 export OPENAI_API_KEY=xxx
 ```
 
-2. Run the code
+#### 2. Run the code
 ```python
 from api4all import EngineFactory
 
@@ -56,8 +58,8 @@ messages = [
 engine = EngineFactory.create_engine(provider="together", 
                                     model="google/gemma-7b-it", 
                                     messages=messages, 
-                                    temperature=0.5, 
-                                    max_tokens=256, 
+                                    temperature=0.9, 
+                                    max_tokens=1028, 
                                     )
 
 response = engine.generate_response()
@@ -65,8 +67,10 @@ response = engine.generate_response()
 print(response)
 ```
 
-3. Check the [log file](logfile.log) for the response and the cost of the request.
-```bash
+- There are some examples in the [examples](examples) folder or <a href="https://colab.research.google.com/drive/1nMGqoWIkL2xLlaSE54vOHhpffaHpihY3?usp=sharing"><img src="img/colab.svg" alt="Open In Colab"></a> to test the examples in Google Colab.
+
+#### 3. Check the [log file](logfile.log) for the response and the cost of the request.
+```log
 Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 	create at: 2024-03-15 16:38:18,129
 	INFO - SUCCESS
@@ -94,6 +98,8 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 |  [Replicate](https://replicate.com)    |     Free to try  | 50 Requests / Second    | REPLICATE_API_KEY | "replicate"  |
 |  [Fireworks](https://fireworks.ai)     |     $1      | 600 Requests / Minute  |  FIREWORKS_API_KEY | "fireworks"  |  
 |  [Deepinfra](https://deepinfra.com)    |     Free to try     | 200 Concurrent request |  DEEPINFRA_API_KEY | "deepinfra"  |
+|  [Lepton](https://www.lepton.ai)    |     $10     | 10 Requests / Minute |  LEPTON_API_KEY | "lepton"  |
+|  ------    |     ------     |  ------ |  ------ |  ------  |
 |  [Google AI (Vertex AI)](https://ai.google.dev)    |     Unlimited     | 60 Requests / Minute | GOOGLE_API_KEY | "google"  |
 |  [OpenAI](http://openai.com)    |     &#x2715;     | 60 Requests / Minute | OPENAI_API_KEY | "openai"  |
 |  [Mistral AI](https://mistral.ai)    |     Free to try     | 5 Requests / Second | MISTRAL_API_KEY | "mistral"  |
@@ -101,6 +107,7 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 
 
 - **Free to try**: Free to try, no credit card required but limited to a certain number of tokens.
+- Rate limit is based on the free plan of the provider. The actual rate limit may be different based on the plan you choose.
 
 ### Open-source models
   -- |Mixtral-8x7b-Instruct-v0.1 | Gemma 7B it |  Mistral-7B-Instruct-v0.1 | LLaMA2-70b |
@@ -115,6 +122,7 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 |  [Replicate](https://replicate.com)    |     $0.3-$1       | &#x2715;       |  $0.05-$0.25 | $0.65-$2.75
 |  [Fireworks](https://fireworks.ai)     |     $0.5-$0.5        | $0.2-$0.2        |  $0.2-$0.2  | $0.9-$0.9
 |  [Deepinfra](https://deepinfra.com)    |     $0.27-$0.27    | &#x2715;    |   &#x2715; | $0.7-$0.9
+|  [Lepton](https://www.lepton.ai)    |     $0.5-$0.5    | &#x2715;    |   &#x2715; | $0.8-$0.8
 
 ### Closed-source models
 #### 1. Mistral AI
@@ -155,5 +163,15 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
 |  Google Gemini 1.0 Pro  |     $0        | $0    |  32,768 | "google/gemini-1.0-pro" |
 
 
+
 ## Contributing
 Welcome to contribute to the project. If you see any updated pricing, new models, new providers, or any other changes, feel free to open an issue or a pull request.
+
+
+## Problems from the providers and Solutions
+
+#### Error with Gemini pro 1.0
+```bash
+ValueError: The `response.text` quick accessor only works when the response contains a valid `Part`, but none was returned. Check the `candidate.safety_ratings` to see if the response was blocked.
+```
+**Solution**: The output is larger than your maximum tokens. Increase the `max_tokens`.
