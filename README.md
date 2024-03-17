@@ -1,5 +1,5 @@
 # api4all
-Easy-to-use LLM API from a state-of-the-art provider and comparison.
+Easy-to-use LLM API from state-of-the-art providers and comparison.
 
 ## Features
 - **Easy-to-use**: A simple and easy-to-use API for state-of-the-art language models from different providers but using in a same way.
