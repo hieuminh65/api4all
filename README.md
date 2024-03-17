@@ -113,8 +113,8 @@ Request ID - fa8cebd0-265a-44b2-95d7-6ff1588d2c87
   -- |Mixtral-8x7b-Instruct-v0.1 | Gemma 7B it |  Mistral-7B-Instruct-v0.1 | LLaMA2-70b | Mistral-7B-Instruct-v0.2 | CodeLlama-70b-Instruct
 |:------:|:------:|:------:|:------:|:------:|:------:|:------:|
 |  API string name          |     "mistralai/Mixtral-8x7B-Instruct-v0.1"    | "google/gemma-7b-it"    | "mistralai/Mistral-7B-Instruct-v0.1"  | "meta/Llama-2-70b-chat" | "mistralai/Mistral-7B-Instruct-v0.2" | "meta/CodeLlama-2-70b-intruct" |
-|  Context Length          |     32,768    | 8.192    |  4,096 | 4,096 | 32,768
-|  Developer          |     Mistral AI    | Google    |  Mistral AI | Meta
+|  Context Length          |     32,768    | 8.192    |  4,096 | 4,096 | 32,768 | 16,384
+|  Developer          |     Mistral AI    | Google    |  Mistral AI | Meta | Mistral AI | Meta
 |  **Cost (Input - Output / MTokens)**          |     -----    | ------    | ------ | -----
 |  [Groq](https://wow.groq.com)          |     $0-$0    | $0-$0    | &#x2715; | $0-$0 | &#x2715; | &#x2715;
 |  [Anyscale](https://www.anyscale.com)  |     $0.5-$0.5       | $0.15-$0.15       |  $0.05-$0.25 | $1.0-$1.0 | &#x2715; | $1.0-$1.0
